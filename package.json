@@ -1,0 +1,32 @@
+{
+  "name": "verde-dachshund",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test:unit": "./node_modules/.bin/mocha ./tests/*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/gabrielabud/verde-dachshund.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "eslint": "^5.5.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "mocha": "^5.2.0",
+    "sinon": "^7.0.0"
+  },
+  "bugs": {
+    "url": "https://gitlab.com/gabrielabud/verde-dachshund/issues"
+  },
+  "homepage": "https://gitlab.com/gabrielabud/verde-dachshund#README"
+}
