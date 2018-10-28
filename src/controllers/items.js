@@ -1,14 +1,14 @@
 const dbq = require('../db/queries');
 const { errorHandler } = require('../helper');
+const { distanceMiles } = require('../config');
 
 const listBySearchTerm = async (searchTerm, lat, lng) => {
   try {
-    console.log('controller search term', searchTerm);
-    const response = await dbq.list({ searchTerm, lat, lng }, 'items');
+    const response = await dbq.list({ searchTerm, lat, lng }, distanceMiles);
     return response;
-  } catch (err) {
-    const handledError = errorHandler(err);
-    throw handledError;
+  } catch (error) {
+    const errorHandled = errorHandler(error);
+    throw errorHandled;
   }
 };
 

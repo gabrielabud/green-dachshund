@@ -1,19 +1,26 @@
-
 const knex = require('../db/knex');
 const { errorHandler } = require('../helper');
 
-async function list(filters = {}, model) {
-  console.log('queries filter', filters);
+async function list(filters = {}, distance) {
   const { searchTerm, lat, lng } = filters;
-  console.log('queeries searchTerm', searchTerm);
   try {
-    const models = await knex(model)
-      .select('*')
-      .where('items.item_name', 'like', `%${searchTerm || ''}%`)
-      .limit(20);
-    return models;
-  } catch (e) {
-    const errorHandled = errorHandler(e);
+    let filteredItems = [];
+    if (lat === undefined || lng === undefined) {
+      filteredItems = await knex.raw(`SELECT *
+      FROM items
+      WHERE UPPER(item_name) LIKE UPPER('%${searchTerm || ''}%')
+      LIMIT 20`);
+    } else {
+      filteredItems = await knex.raw(`SELECT *, ( 3959 * acos( cos( radians(${lat}) ) * cos( radians( lat ) ) * cos( radians( lng ) - radians(${lng}) ) + sin( radians(${lat}) ) * sin(radians(lat)) ) ) AS distance
+      FROM items
+      WHERE ( 3959 * acos( cos( radians(${lat}) ) * cos( radians( lat ) ) * cos( radians( lng ) - radians(${lng}) ) + sin( radians(${lat}) ) * sin(radians(lat)) ) ) < ${distance} 
+      AND UPPER(item_name) LIKE UPPER('%${searchTerm || ''}%')
+      ORDER BY distance
+      LIMIT 20`);
+    }
+    return filteredItems.rows;
+  } catch (error) {
+    const errorHandled = errorHandler(error);
     throw errorHandled;
   }
 }

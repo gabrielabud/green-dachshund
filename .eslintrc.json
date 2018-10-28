@@ -9,6 +9,7 @@
       "never"
     ],
     "no-underscore-dangle" : "off",
+    "arrow-body-style": "off",
     "strict": "off",
     "complexity": ["warn", 10],
     "no-console": "off"
@@ -20,3 +21,4 @@
     "mocha": true
   }
 }
+
