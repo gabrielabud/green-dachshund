@@ -1,16 +1,17 @@
 const dbq = require('../db/queries');
+const { errorHandler } = require('../helper');
 
-
-const listBySearchTerm = async () => {
+const listBySearchTerm = async (searchTerm, lat, lng) => {
   try {
-    const response = await dbq.list({}, 'items');
+    console.log('controller search term', searchTerm);
+    const response = await dbq.list({ searchTerm, lat, lng }, 'items');
     return response;
   } catch (err) {
-    throw new Error('Error filtering by searchTerm Controller'); 
+    const handledError = errorHandler(err);
+    throw handledError;
   }
 };
 
 module.exports = {
-    listBySearchTerm
+  listBySearchTerm
 };
-  
