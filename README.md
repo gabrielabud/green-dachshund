@@ -1,5 +1,5 @@
 
-<img src="src/images/dachshund-green.svg" alt="logo" width="220">
+<img src="./src/images/dachshund-green.svg" alt="logo" width="220">
 
 # Green Dachshund
 
