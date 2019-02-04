@@ -1,7 +1,8 @@
 
 <img src="https://gabrielabudeanu.ro/green-dachshund.svg" alt="logo" width="220">
 
-# Green Dachshund
+# Green Dachshund Challenge
+Build a `GET /search` endpoint that will return the most appropriate 20 items given `searchTerm`, `lat` (latitude) and `lng` (longitude). e.g. `/search?searchTerm=camera&lat=51.948&lng=0.172943`. It is up to you to decide how to weight the two factors to return the most relevant results. We have provided you with a sqlite database containing just under 2000 items with the relevant fields.
 
 # Instructions
 - $ git clone git@gitlab.com:gabrielabud/green-dachshund.git --> $ git checkout develop 
